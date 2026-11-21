@@ -181,4 +181,92 @@
 
   // ---- Year
   document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
+
+  // ---- Image zoom (case studies + work): click an image to view it large.
+  // A 2x version is loaded from assets/img/hd/<same path> when it exists; otherwise the original is used.
+  const zoomables = [...document.querySelectorAll('.cs img, .work-row__media img')]
+    .filter((img) => !img.closest('a, .persona, .cs-hero, .cs-hero__top, .avatar, .other-card, .project-card'));
+  if (zoomables.length) {
+    const box = document.createElement('div');
+    box.className = 'zoom';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Image viewer');
+    box.innerHTML = `
+      <div class="zoom__stage"><img class="zoom__img" alt=""></div>
+      <p class="zoom__cap"></p>
+      <button class="zoom__btn zoom__close" type="button" aria-label="Close">×</button>
+      <button class="zoom__btn zoom__prev" type="button" aria-label="Previous image">‹</button>
+      <button class="zoom__btn zoom__next" type="button" aria-label="Next image">›</button>
+      <span class="zoom__count"></span>`;
+    document.body.appendChild(box);
+    const stage = box.querySelector('.zoom__stage');
+    const big = box.querySelector('.zoom__img');
+    const cap = box.querySelector('.zoom__cap');
+    const count = box.querySelector('.zoom__count');
+    let idx = 0; let lastFocus = null;
+
+    const hdSrc = (src) => src.replace(/\/assets\/img\/(korail|heartpath|forest)\//, '/assets/img/hd/$1/');
+    const captionOf = (img) => {
+      const fig = img.closest('figure');
+      const fc = fig && fig.querySelector('figcaption');
+      return (fc && fc.textContent.trim()) || img.alt || '';
+    };
+    const show = (i) => {
+      idx = (i + zoomables.length) % zoomables.length;
+      const img = zoomables[idx];
+      box.classList.remove('is-actual');
+      stage.scrollTo(0, 0);
+      big.src = img.currentSrc || img.src;          // show the page image instantly
+      big.alt = img.alt;
+      cap.textContent = captionOf(img);
+      count.textContent = zoomables.length > 1 ? `${idx + 1} / ${zoomables.length}` : '';
+      const hd = hdSrc(img.src);
+      if (hd !== img.src) {
+        const pre = new Image();
+        pre.onload = () => { if (zoomables[idx] === img) big.src = hd; };
+        pre.src = hd;
+      }
+    };
+    const open = (i) => {
+      lastFocus = document.activeElement;
+      show(i);
+      box.classList.add('is-open');
+      document.documentElement.classList.add('zoom-lock');
+      if (lenis) lenis.stop();
+      box.querySelector('.zoom__close').focus();
+    };
+    const close = () => {
+      box.classList.remove('is-open', 'is-actual');
+      document.documentElement.classList.remove('zoom-lock');
+      if (lenis) lenis.start();
+      if (lastFocus) lastFocus.focus();
+    };
+
+    zoomables.forEach((img, i) => {
+      img.classList.add('zoomable');
+      img.tabIndex = 0;
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', `Enlarge image: ${img.alt || captionOf(img)}`);
+      img.addEventListener('click', () => open(i));
+      img.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); } });
+    });
+    // Click the large image to toggle fit-to-screen / actual size (scrollable)
+    big.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const fits = big.naturalWidth <= stage.clientWidth && big.naturalHeight <= stage.clientHeight;
+      if (!fits || box.classList.contains('is-actual')) box.classList.toggle('is-actual');
+    });
+    stage.addEventListener('click', (e) => { if (e.target === stage) close(); });
+    box.querySelector('.zoom__close').addEventListener('click', close);
+    box.querySelector('.zoom__prev').addEventListener('click', () => show(idx - 1));
+    box.querySelector('.zoom__next').addEventListener('click', () => show(idx + 1));
+    document.addEventListener('keydown', (e) => {
+      if (!box.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowRight') show(idx + 1);
+      else if (e.key === 'ArrowLeft') show(idx - 1);
+    });
+    if (zoomables.length < 2) box.classList.add('is-single');
+  }
 })();

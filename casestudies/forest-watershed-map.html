@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forest Watershed Map — SKY YOO</title>
+  <meta name="description" content="Forest Watershed Map — a Web GIS spatial-analysis flow non-experts can follow.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/pearl.css">
+  <link rel="icon" href="../assets/img/common/logo.svg" type="image/svg+xml">
+</head>
+<body class="case">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="logo" href="../index.html" aria-label="SKY YOO home"><img src="../assets/img/common/logo.svg" alt="" width="30" height="30"><span>SKY YOO</span></a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html">Case Studies</a>
+        <a href="../work.html" aria-current="page">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+      <a class="pill pill--dark header-cta" href="#" data-todo="resume-link">Resume</a>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <nav class="cs-side" aria-label="Sections">
+    <a href="#overview">Overview</a><a href="#interview">Interview · Define</a><a href="#design">Design · Align</a>
+    <a href="#deliver">Refine · Deliver</a><a href="#takeaways">Takeaways</a><a href="#other">Other Projects</a>
+  </nav>
+
+  <main class="cs">
+    <section class="cs-hero">
+      <div class="cs-hero__top">
+        <img class="reveal" src="../assets/img/forest/hero.png" alt="Spatial analysis panel on a laptop over a 3D forest terrain map">
+        <div class="reveal">
+          <h1 class="cs-title">Forest Watershed Map</h1>
+          <p class="cs-tagline">Complex spatial data, clearly</p>
+          <p class="cs-summary">An upgrade of a forest watershed digital-map platform for the Korea Forest Conservation Association. I designed its forest-disaster spatial analysis so that non-experts can reach results just by choosing conditions — complex GIS analysis turned into a step-by-step flow.</p>
+          <a class="btn-outline" href="#deliver">View Screens</a>
+        </div>
+      </div>
+      <div class="cs-meta reveal">
+        <div><h4>Deliverables</h4><ul><li>Requirements Analysis</li><li>Screen Design &amp; Functional Spec</li><li>GIS Spatial Analysis UI</li><li>Attribute Table (ag-Grid) Design</li></ul></div>
+        <div><h4>My Role</h4><ul><li>UX/UI Design (75%)</li><li>Requirements Analysis (50%)</li><li>Project Management (80%)</li><li>API &amp; Data Structure Review</li></ul></div>
+        <div><h4>Tool</h4><ul><li>Figma</li><li>QGIS · PostgreSQL</li><li>Microsoft Teams</li><li>Word · Excel · PowerPoint</li></ul></div>
+        <div><h4>Project Context</h4><ul><li>Client: Korea Forest<br>Conservation Association</li><li>2026.08 – ongoing (year 3)</li><li>6-person team · 3 developers</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 1. OVERVIEW -->
+    <div class="cs-bar" id="overview"><h2>1. Overview</h2></div>
+    <div class="cs-body">
+      <div class="cs-block reveal">
+        <p class="cs-label">1-1. Background</p>
+        <h3 class="cs-h">Non-experts needed to analyze forest-disaster data without knowing GIS.</h3>
+        <p class="cs-p">The existing service assumed analysis experts: users had to know which data and technique to use first, and features were split by analysis technique. The new direction was simple — anyone should be able to find analysis results for the area they care about, even without spatial-analysis knowledge.</p>
+      </div>
+      <div class="compare-cards reveal">
+        <div>
+          <span class="tag">AS-IS</span>
+          <img src="../assets/img/forest/asis.png" width="500" alt="Previous expert GIS tool">
+          <ul class="chips"><li>Formulas typed by hand</li><li>Users must bring their own data</li><li>Built for expert analysis</li></ul>
+        </div>
+        <div>
+          <span class="tag tag--green">TO-BE</span>
+          <img src="../assets/img/forest/tobe.png" width="500" alt="New guided analysis panel">
+          <ul class="chips chips--green"><li>Analysis scope at a glance</li><li>Step-by-step conditions</li><li>Analyze with chips — no attribute knowledge</li><li>One panel, no scrolling</li><li>Panel never hides the results</li></ul>
+        </div>
+      </div>
+      <div class="note reveal">
+        <p class="tag">DESIGNER’S NOTE</p>
+        <h4>Why an Agile, iterative process?</h4>
+        <p>This was a development project with three developers rather than a research-led UX project. Keeping in constant contact with the client and aligning features with developers, I ran short loops of design → align → refine.</p>
+      </div>
+      <figure class="fig reveal">
+        <div class="steps">
+          <div class="step"><b>01</b><strong>Interview</strong><span>Requirements &amp; work context</span></div>
+          <div class="step"><b>02</b><strong>Define</strong><span>Linking requirements to actions</span></div>
+          <div class="step"><b>03</b><strong>Design</strong><span>Step-by-step screen design</span></div>
+          <div class="step"><b>04</b><strong>Align</strong><span>Development &amp; data alignment</span></div>
+          <div class="step"><b>05</b><strong>Refine</strong><span>Reflecting constraints</span></div>
+          <div class="step"><b>06</b><strong>Deliver</strong><span>Final design &amp; hand-off</span></div>
+        </div>
+        <figcaption>Whenever a constraint appeared, I went back and redesigned.</figcaption>
+      </figure>
+    </div>
+
+    <!-- 2. INTERVIEW · DEFINE -->
+    <div class="cs-bar" id="interview"><h2>2. Interview · Define</h2></div>
+    <div class="cs-body">
+      <div class="cs-block reveal">
+        <p class="cs-label">2-1. Requirements Review</p>
+        <h3 class="cs-h">Once the user was defined, the design had a standard.</h3>
+        <p class="cs-p">Meeting notes listed overlay, distance, buffer and multi-condition analysis plus attribute-table lookup. Through meetings with the client, I confirmed that the real users were forest-agency staff unfamiliar with spatial analysis — so I ordered the screens for people who need to find management targets, not for people who know analysis techniques.</p>
+      </div>
+      <figure class="fig reveal">
+        <div class="row" style="align-items:center">
+          <img src="../assets/img/forest/req-1.png" width="250" alt="Requirements meeting notes">
+          <img src="../assets/img/forest/req-2.png" width="400" alt="Requirements review meeting">
+          <img src="../assets/img/forest/req-3.png" width="290" alt="Requirements analysis sheet">
+        </div>
+        <figcaption>Requirements meeting notes and the meeting scene</figcaption>
+      </figure>
+
+      <div class="cs-block reveal">
+        <p class="cs-label">2-2. Three Concepts</p>
+        <h3 class="cs-h">Scattered requests, grouped into three concepts.</h3>
+        <p class="cs-p">Grouping the requests by what users actually needed to do gave every screen a shared standard.</p>
+      </div>
+      <div class="cards3 reveal">
+        <div class="card"><b>THEMATIC</b><h4>Start from a disaster theme</h4><p>Users begin with what they care about — landslides, wildfires, pests — not with an analysis technique.</p></div>
+        <div class="card"><b>GUIDED</b><h4>Non-experts can follow</h4><p>Conditions are split into clear steps, so anyone can move forward without GIS terms.</p></div>
+        <div class="card"><b>ACTIONABLE</b><h4>Find management targets</h4><p>The flow doesn’t stop at a map; it leads all the way to the areas that need attention.</p></div>
+      </div>
+      <figure class="fig reveal">
+        <ul class="chips chips--green chips--center"><li>Region</li><li>Watershed · soil</li><li>Watershed · forest type</li><li>Landslide</li><li>Wildfire</li><li>Pests</li><li>Terrain</li></ul>
+        <figcaption>Analysis themes in the panel</figcaption>
+      </figure>
+    </div>
+
+    <!-- 3. DESIGN · ALIGN -->
+    <div class="cs-bar" id="design"><h2>3. Design · Align</h2></div>
+    <div class="cs-body">
+      <div class="cs-block reveal">
+        <p class="cs-label">3-1. Screen Design &amp; Functional Spec</p>
+        <h3 class="cs-h">One requirement, two documents.</h3>
+        <p class="cs-p">I translated each requirement into a screen design spec for the client and a functional spec for the developers, alongside the WBS and requirements analysis, so the client and the team looked in the same direction.</p>
+      </div>
+      <figure class="fig reveal">
+        <div class="row">
+          <div class="col"><img src="../assets/img/forest/spec-1.png" width="560" alt="Screen design spec"><img src="../assets/img/forest/spec-wbs.png" width="560" alt="WBS schedule"></div>
+          <div class="col"><img src="../assets/img/forest/spec-2.png" width="440" alt="Functional spec"><img src="../assets/img/forest/spec-3.png" width="440" alt="Screen design spec table of contents"></div>
+        </div>
+        <figcaption>Screen design spec · functional spec · WBS · requirements analysis</figcaption>
+      </figure>
+
+      <div class="cs-block reveal">
+        <p class="cs-label">3-2. Align with Developers &amp; Client</p>
+        <h3 class="cs-h">Matching the meaning on screen, not field names.</h3>
+        <p class="cs-p">I checked each screen-spec item against the actual API responses. Conditions the spec couldn’t tell — such as API keys and client IP allowlists — I verified by sending real requests, then fed the results back into the screens. For example, when photo descriptions weren’t provided, we agreed to show the capture date and site coordinates instead.</p>
+      </div>
+      <figure class="fig reveal">
+        <img src="../assets/img/forest/align-1.png" width="1020" alt="Screen spec compared with actual API response">
+        <div class="row" style="align-items:center">
+          <img src="../assets/img/forest/align-3.png" width="236" alt="Discussion note">
+          <img src="../assets/img/forest/align-2.png" width="760" alt="Development discussion thread">
+        </div>
+        <figcaption>Screen spec vs. actual API responses, and notes from development discussions</figcaption>
+      </figure>
+
+      <div class="cs-block reveal">
+        <p class="cs-label">3-3. Design System &amp; Prototype</p>
+        <h3 class="cs-h">Shared rules for screens that keep changing.</h3>
+        <p class="cs-p">I organized colors, typography and components with Figma Variables, and connected the main analysis flows into a prototype to review with the client and developers.</p>
+      </div>
+      <figure class="fig reveal">
+        <img src="../assets/img/forest/ds-1.png" width="1000" alt="Figma Variables and components">
+        <img src="../assets/img/forest/ds-2.png" width="1000" alt="Prototype of the main analysis flow">
+        <figcaption>Figma Variables · design system · prototype of the main flows</figcaption>
+      </figure>
+    </div>
+
+    <!-- 4. REFINE · DELIVER -->
+    <div class="cs-bar" id="deliver"><h2>4. Refine · Deliver</h2></div>
+    <div class="cs-body">
+      <div class="cs-block reveal">
+        <p class="cs-label">4-1. AS-IS → TO-BE</p>
+        <h3 class="cs-h">From an expert tool to a guided panel.</h3>
+        <p class="cs-p">The previous tool required typing formulas and bringing your own data. The new panel fixes the analysis scope and breaks conditions into steps, so users pick chips instead of attribute names.</p>
+      </div>
+      <figure class="fig reveal">
+        <div class="row" style="align-items:center">
+          <img src="../assets/img/forest/before.png" width="460" alt="Previous GIS tool">
+          <img src="../assets/img/forest/after.png" width="600" alt="New spatial analysis panel on a laptop">
+        </div>
+        <figcaption>Previous GIS tool (left) and the new spatial analysis panel (right)</figcaption>
+      </figure>
+
+      <div class="cs-block reveal">
+        <p class="cs-label">4-2. Result Screen</p>
+        <h3 class="cs-h">Lighter results for everyday PCs.</h3>
+        <p class="cs-p">Spatial data is huge and heavy. Considering the PC specs of non-expert users, I proposed keeping up to five analysis results at a time.</p>
+      </div>
+      <figure class="fig reveal"><img src="../assets/img/forest/result.png" width="900" alt="Analysis result screen with attribute table"></figure>
+
+      <div class="cs-block reveal">
+        <p class="cs-label">4-3. High-fidelity Design</p>
+        <h3 class="cs-h">Simple analysis, all in one panel.</h3>
+        <p class="cs-p">Choose conditions → find management targets → view the attribute table, all within one panel. The analysis scope stays fixed and the conditions are split into four steps, so users reach results without scrolling.</p>
+      </div>
+      <figure class="fig reveal">
+        <div class="row">
+          <figure class="fig" style="padding:0;width:auto"><img src="../assets/img/forest/hifi-1.png" width="520" alt="Finding analysis conditions"><figcaption>Finding the analysis conditions you want</figcaption></figure>
+          <figure class="fig" style="padding:0;width:auto"><img src="../assets/img/forest/hifi-2.png" width="520" alt="Viewing the attribute table"><figcaption>Viewing the attribute table of results</figcaption></figure>
+        </div>
+      </figure>
+    </div>
+
+    <!-- 5. TAKEAWAYS -->
+    <div class="cs-bar" id="takeaways"><h2>5. Takeaways</h2></div>
+    <div class="cs-body">
+      <div class="takeaway reveal">
+        <h3>What went well</h3>
+        <p class="cs-p">By defining the end user first, I could propose a service that fits them and set the main design flow and direction.</p>
+      </div>
+      <div class="takeaway reveal">
+        <h3>Limitations</h3>
+        <p class="cs-p">I haven’t been able to run user testing yet. Development and discussions continue until the final report, so the design hasn’t been validated in real use.</p>
+      </div>
+      <div class="takeaway reveal">
+        <h3>Next Steps</h3>
+        <p class="cs-p">Development is in progress. I’ll keep comparing the implementation with the design, refine the result UI with the team, and bring every change back into the screens.</p>
+      </div>
+    </div>
+
+    <div class="cs-bar" id="other"><h2>Other Projects</h2></div>
+    <div class="other">
+      <article class="other-card reveal">
+        <div>
+          <h3>Korail Talk</h3>
+          <p>A redesign that helps first-time visitors to Korea book train tickets on their own — search places, not station names.</p>
+          <div class="btns"><a class="btn-sm" href="korailtalk.html">View Case Study</a></div>
+        </div>
+        <div class="other-card__media"><img src="../assets/img/korail/hero.png" alt="Korail Talk screens"></div>
+      </article>
+      <article class="other-card other-card--flip reveal">
+        <div>
+          <h3>Heart Path</h3>
+          <p>People check their health data often, but don’t always understand what the numbers mean. Heart Path translates heart data into meaning and clear next steps.</p>
+          <div class="btns"><a class="btn-sm" href="heartpath.html">View Case Study</a></div>
+        </div>
+        <div class="other-card__media"><img src="../assets/img/heartpath/hero.png" alt="Heart Path app screens"></div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__top">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Let’s start<br>creating together</h2>
+          <a class="btn-grey" href="../contact.html">Let’s talk <svg viewBox="0 0 16 16"><path d="M13.67 1.58H4a.75.75 0 0 0 0 1.5h7.86L1.8 13.14a.75.75 0 1 0 1.06 1.06L12.92 4.14V12a.75.75 0 0 0 1.5 0V2.33a.75.75 0 0 0-.75-.75z"/></svg></a>
+        </div>
+        <div class="footer-links">
+          <div class="col"><a href="../index.html">Home</a><a href="index.html">Case Studies</a>
+        <a href="../work.html">Work</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></div>
+          <div class="col">
+            <a href="#" data-todo="linkedin">Linkedin <svg viewBox="0 0 16 16"><path d="M13.67 1.58H4a.75.75 0 0 0 0 1.5h7.86L1.8 13.14a.75.75 0 1 0 1.06 1.06L12.92 4.14V12a.75.75 0 0 0 1.5 0V2.33a.75.75 0 0 0-.75-.75z" fill="#fff"/></svg></a>
+            <a href="#" data-todo="dribbble">Dribbble <svg viewBox="0 0 16 16"><path d="M13.67 1.58H4a.75.75 0 0 0 0 1.5h7.86L1.8 13.14a.75.75 0 1 0 1.06 1.06L12.92 4.14V12a.75.75 0 0 0 1.5 0V2.33a.75.75 0 0 0-.75-.75z" fill="#fff"/></svg></a>
+            <a href="mailto:hn35987@gmail.com">Gmail <svg viewBox="0 0 16 16"><path d="M13.67 1.58H4a.75.75 0 0 0 0 1.5h7.86L1.8 13.14a.75.75 0 1 0 1.06 1.06L12.92 4.14V12a.75.75 0 0 0 1.5 0V2.33a.75.75 0 0 0-.75-.75z" fill="#fff"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom"><span><span data-year>2026</span> Designed by SKY YOO</span></div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

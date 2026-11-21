@@ -72,13 +72,19 @@
   }
 
   // ---- Typing title (About): <h1 class="type-on">
-  document.querySelectorAll('.type-on').forEach((el) => {
-    const text = el.textContent; el.setAttribute('aria-label', text); el.textContent = '';
+  // window.typeOn(el, text) is also called by i18n.js when the language changes.
+  window.typeOn = (el, text) => {
+    clearTimeout(el._typeTimer);
+    el.setAttribute('aria-label', text); el.textContent = '';
     [...text].forEach((c) => { const s = document.createElement('span'); s.className = 'ch'; s.setAttribute('aria-hidden', 'true'); s.textContent = c; el.appendChild(s); });
     const chars = [...el.querySelectorAll('.ch')];
     if (reduce) { chars.forEach((c) => (c.style.opacity = 1)); return; }
-    let i = 0; const tick = () => { if (i < chars.length) { chars[i++].style.opacity = 1; setTimeout(tick, 55); } };
-    setTimeout(tick, 300);
+    let i = 0; const tick = () => { if (i < chars.length) { chars[i++].style.opacity = 1; el._typeTimer = setTimeout(tick, 55); } };
+    el._typeTimer = setTimeout(tick, 300);
+  };
+  document.querySelectorAll('.type-on').forEach((el) => {
+    el.dataset.en = el.textContent.trim();
+    window.typeOn(el, el.dataset.en);
   });
 
   // ---- Falling stickers (Home): .physics with .body children, needs Matter.js

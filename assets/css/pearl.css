@@ -30,6 +30,16 @@ a:hover .roll > span, .logo:hover .roll > span { transform: translateY(-100%); }
 .nav:hover a:not(:hover) { opacity: .6; }
 .nav a { transition: opacity .25s; }
 @media (prefers-reduced-motion: reduce) { .roll > span { transition: none; } }
+/* KO / EN toggle */
+.header-end { justify-self: end; display: flex; align-items: center; gap: 12px; }
+.lang-toggle { display: inline-flex; padding: 3px; border: 1px solid rgba(0,0,0,.14); border-radius: 64px; background: transparent; cursor: pointer; font-family: var(--f-mono); font-size: 12px; line-height: 1; }
+.lang-toggle span { padding: 6px 9px; border-radius: 64px; color: rgba(0,0,0,.45); transition: background .25s, color .25s; }
+.lang-toggle[data-lang="en"] [data-l="en"], .lang-toggle[data-lang="ko"] [data-l="ko"] { background: #000; color: #fff; }
+.lang-toggle:hover span { color: #000; }
+.lang-toggle[data-lang="en"]:hover [data-l="en"], .lang-toggle[data-lang="ko"]:hover [data-l="ko"] { color: #fff; }
+.lang-toggle:focus-visible { outline: 2px solid #000; outline-offset: 2px; }
+/* Korean: break between words, slightly looser tracking */
+html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
 .pill--dark { padding: 8px 16px; border-radius: 64px; font-size: 16px; font-weight: 500; border: 0; }
 .pill--dark:hover { background: #333; color: #fff; }
 

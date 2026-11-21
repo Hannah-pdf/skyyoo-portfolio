@@ -2,6 +2,10 @@
    Translations live in i18n-ko.js (English text → Korean).
    Load order: main.js → i18n-ko.js → i18n.js */
 (() => {
+  // On/off switch: false = button hidden, site always shows English. Set to true to turn it back on.
+  const ENABLED = false;
+  if (!ENABLED) return;
+
   const KO = window.I18N_KO || {};
   const TITLES = window.I18N_KO_TITLES || {};
   const STORE = 'skyyoo-lang';

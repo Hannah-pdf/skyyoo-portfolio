@@ -47,6 +47,7 @@ then open http://localhost:5173
 4. The site appears at `https://<your-username>.github.io/portfolio/`.
 
 ## 한국어 / English 전환
+- **지금은 숨겨져 있습니다.** 다시 켜려면 `assets/js/i18n.js` 맨 위의 `const ENABLED = false;`를 `true`로 바꾸세요.
 - 헤더 오른쪽 `EN | KO` 버튼으로 전환됩니다. 선택은 브라우저에 기억되고, 처음 방문자는 영어로 봅니다.
 - 번역문은 `assets/js/i18n-ko.js` 한 파일에 있습니다. 왼쪽이 영어 원문(페이지에 있는 그대로), 오른쪽이 한국어입니다.
 - 번역을 고치려면 오른쪽 한국어만 수정하세요. 영어 문장을 HTML에서 바꾸면 i18n-ko.js의 왼쪽 키도 똑같이 바꿔야 번역이 적용됩니다.

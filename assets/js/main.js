@@ -184,7 +184,39 @@
 
   // ---- Image zoom (case studies + work): click an image to view it large.
   // A 2x version is loaded from assets/img/hd/<same path> when it exists; otherwise the original is used.
-  const zoomables = [...document.querySelectorAll('.cs img, .work-row__media img')]
+
+  // ---- Videos: <img data-video="..."> becomes a muted, looping video that plays while on screen.
+  // The image stays as the poster, and the video file only downloads when it scrolls near the viewport.
+  const vids = [];
+  document.querySelectorAll('img[data-video]').forEach((img) => {
+    const v = document.createElement('video');
+    v.className = `${img.className} cs-video`.trim();
+    v.poster = img.getAttribute('src');
+    v.dataset.src = img.dataset.video;
+    v.dataset.poster = img.getAttribute('src');
+    v.muted = true; v.loop = true; v.playsInline = true;
+    v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+    v.preload = 'none';
+    v.setAttribute('aria-label', img.alt);
+    v.dataset.alt = img.alt;
+    if (img.getAttribute('width')) v.setAttribute('width', img.getAttribute('width'));
+    if (img.getAttribute('style')) v.setAttribute('style', img.getAttribute('style'));
+    const ratio = () => { if (img.naturalWidth) v.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`; };
+    if (img.complete) ratio(); else img.addEventListener('load', ratio, { once: true });
+    img.replaceWith(v);
+    vids.push(v);
+  });
+  if (vids.length) {
+    const io = new IntersectionObserver((entries) => entries.forEach(({ target: v, isIntersecting }) => {
+      if (isIntersecting) {
+        if (!v.src) v.src = v.dataset.src;
+        if (!reduce) v.play().catch(() => {});
+      } else if (!v.paused) v.pause();
+    }), { rootMargin: '200px 0px' });
+    vids.forEach((v) => io.observe(v));
+  }
+
+  const zoomables = [...document.querySelectorAll('.cs img, .cs video.cs-video, .work-row__media img')]
     .filter((img) => !img.closest('a, .persona, .cs-hero, .cs-hero__top, .avatar, .other-card, .project-card'));
   if (zoomables.length) {
     const box = document.createElement('div');
@@ -193,7 +225,7 @@
     box.setAttribute('aria-modal', 'true');
     box.setAttribute('aria-label', 'Image viewer');
     box.innerHTML = `
-      <div class="zoom__stage"><img class="zoom__img" alt=""></div>
+      <div class="zoom__stage"><img class="zoom__img" alt=""><video class="zoom__video" muted loop playsinline controls></video></div>
       <p class="zoom__cap"></p>
       <button class="zoom__btn zoom__close" type="button" aria-label="Close">×</button>
       <button class="zoom__btn zoom__prev" type="button" aria-label="Previous image">‹</button>
@@ -210,13 +242,27 @@
     const captionOf = (img) => {
       const fig = img.closest('figure');
       const fc = fig && fig.querySelector('figcaption');
-      return (fc && fc.textContent.trim()) || img.alt || '';
+      return (fc && fc.textContent.trim()) || img.alt || img.dataset.alt || '';
     };
+    const bigVideo = box.querySelector('.zoom__video');
     const show = (i) => {
       idx = (i + zoomables.length) % zoomables.length;
       const img = zoomables[idx];
       box.classList.remove('is-actual');
       stage.scrollTo(0, 0);
+      if (img.tagName === 'VIDEO') {                 // video: play it large with controls
+        box.classList.add('is-video');
+        big.removeAttribute('src');
+        bigVideo.poster = img.dataset.poster;
+        bigVideo.src = img.dataset.src;
+        bigVideo.muted = true;
+        bigVideo.play().catch(() => {});
+        cap.textContent = captionOf(img);
+        count.textContent = zoomables.length > 1 ? `${idx + 1} / ${zoomables.length}` : '';
+        return;
+      }
+      box.classList.remove('is-video');
+      bigVideo.pause(); bigVideo.removeAttribute('src'); bigVideo.load();
       big.src = img.currentSrc || img.src;          // show the page image instantly
       big.alt = img.alt;
       cap.textContent = captionOf(img);
@@ -238,6 +284,7 @@
     };
     const close = () => {
       box.classList.remove('is-open', 'is-actual');
+      bigVideo.pause();
       document.documentElement.classList.remove('zoom-lock');
       if (lenis) lenis.start();
       if (lastFocus) lastFocus.focus();

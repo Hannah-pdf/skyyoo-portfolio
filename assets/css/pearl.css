@@ -236,3 +236,11 @@ html.zoom-lock, html.zoom-lock body { overflow: hidden; }
   .zoom__prev, .zoom__next { top: auto; bottom: 14px; transform: none; }
 }
 @media (prefers-reduced-motion: reduce) { .zoom, .zoom__img { transition: none; } }
+
+/* ---------- Autoplay videos (replace images that were videos in Figma) ---------- */
+video.cs-video { display: block; max-width: 100%; height: auto; object-fit: cover; background: #ececec; }
+.zoom__video { display: none; max-width: 100%; max-height: 100%; border-radius: 6px; background: #000; }
+.zoom.is-video .zoom__img { display: none; }
+.zoom.is-video .zoom__video { display: block; }
+.fig video.cs-video { border-radius: 4px; }
+.feature video.cs-video { width: 352px; max-width: 100%; justify-self: center; }

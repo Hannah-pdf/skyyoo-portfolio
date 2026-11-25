@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GIS Safety Map — SKY YOO</title>
+  <meta name="description" content="GIS Safety Map for HD Hyundai Samho — service planning and screen design for a shipyard safety map and map-layer admin.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/pearl.css">
+  <link rel="icon" href="../assets/img/common/logo.svg" type="image/svg+xml">
+</head>
+<body class="case">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="logo" href="../index.html" aria-label="SKY YOO home"><img src="../assets/img/common/logo.svg" alt="" width="30" height="30"><span>SKY YOO</span></a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html">Case Studies</a>
+        <a href="../work.html" aria-current="page">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+      <a class="pill pill--dark header-cta" href="#" data-todo="resume-link">Resume</a>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+
+  <nav class="cs-side" aria-label="Sections">
+    <a href="#overview">Overview</a><a href="#structure">Define · Structure</a><a href="#screens">Screen Design</a>
+    <a href="#deliver">Specs · Manual</a><a href="#takeaways">Takeaways</a><a href="#other">Other Projects</a>
+  </nav>
+
+  <main class="cs">
+    <section class="cs-hero">
+      <div class="cs-hero__top">
+        <img class="reveal" src="../assets/img/hd-samho/screens/sa-01-safety-work.jpg" alt="Safety Map screen design: high-risk work inspection status on the shipyard map">
+        <div class="reveal">
+          <h1 class="cs-title">GIS Safety Map</h1>
+          <p class="cs-tagline">Shipyard safety, defined feature by feature</p>
+          <p class="cs-summary">An upgrade of HD Hyundai Samho’s electronic-map GIS system. I planned the Safety Map service and the admin features that organize map groups and layers — turning requirements into user actions and system functions, then carrying them through functional specs and screen designs into a structure developers could build.</p>
+          <a class="btn-outline" href="#screens">View Screens</a>
+        </div>
+      </div>
+      <div class="cs-meta reveal">
+        <div><h4>Deliverables</h4><ul><li>Functional Specification</li><li>Screen Design Spec</li><li>Change History</li><li>Admin Manual</li></ul></div>
+        <div><h4>My Role</h4><ul><li>Service Planning</li><li>UI/UX Screen Design</li><li>Requirements → Functions</li><li>Spec &amp; Change Management</li></ul></div>
+        <div><h4>Design Areas</h4><ul><li>Safety Map</li><li>Map Groups</li><li>Spatial Data Layers</li><li>Map Management</li></ul></div>
+        <div><h4>Project Context</h4><ul><li>Client: HD Hyundai Samho</li><li>Industrial-site GIS service</li><li>2025</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 1. OVERVIEW -->
+    <div class="cs-bar" id="overview"><h2>1. Overview</h2></div>
+    <div class="cs-body">
+      <div class="cs-block reveal">
+        <p class="cs-label">1-1. Background</p>
+        <h3 class="cs-h">One shipyard, many maps — each needing its own layers.</h3>
+        <p class="cs-p">The shipyard’s GIS splits its maps by line of work: block &amp; logistics, facilities, safety, traffic and mobile. My part was the Safety Map, used by the safety planning team, and the admin features that decide which spatial layers each map shows.</p>
+      </div>
+      <div class="note reveal">
+        <p class="tag">HOW I FRAMED THE WORK</p>
+        <h4>From “requirements analysis” to buildable functions</h4>
+        <p>I broke each requirement down into user actions and system functions, then turned them into a service structure developers could build through the functional spec and the screen design spec.</p>
+      </div>
+      <figure class="fig reveal">
+        <div class="steps">
+          <div class="step"><b>01</b><strong>Requirements</strong><span>Detailing needs into functions</span></div>
+          <div class="step"><b>02</b><strong>Functions</strong><span>User actions &amp; system behavior</span></div>
+          <div class="step"><b>03</b><strong>Structure</strong><span>Map groups &amp; layer hierarchy</span></div>
+          <div class="step"><b>04</b><strong>Screens</strong><span>Screen design per function</span></div>
+          <div class="step"><b>05</b><strong>Changes</strong><span>Revisions &amp; version history</span></div>
+          <div class="step"><b>06</b><strong>Manual</strong><span>How to use the admin pages</span></div>
+        </div>
+        <figcaption>Specs and screens were revised together whenever a feature changed.</figcaption>
+      </figure>
+    </div>
+
+    <!-- 2. DEFINE · STRUCTURE -->
+    <div class="cs-bar" id="structure"><h2>2. Define · Structure</h2></div>
+    <div class="cs-body">
+      <div class="cs-block reveal">
+        <p class="cs-label">2-1. Spatial Data Structure</p>
+        <h3 class="cs-h">Map groups first, then the layers inside them.</h3>
+        <p class="cs-p">Before drawing screens, I organized how spatial data is managed: each work area has its own map groups, a group is registered by choosing its work area and a name, and each group holds the sub-layers that appear on that map.</p>
+      </div>
+      <figure class="fig reveal">
+        <div class="struct">
+          <p class="struct__title">Spatial data management structure</p>
+          <div class="struct__node struct__node--root"><strong>GIS Map Service</strong></div>
+          <div class="struct__arrow" aria-hidden="true">↓</div>
+          <div class="struct__grid">
+            <div>Block &amp; Logistics</div><div>Facilities</div><div class="is-mine">Safety</div>
+            <div>Traffic</div><div>Mobile</div><div>Common</div>
+          </div>
+          <div class="struct__arrow" aria-hidden="true">↓</div>
+          <div class="struct__node"><strong>Map group registration &amp; management</strong><span>Choose the work area · set the group name</span></div>
+          <div class="struct__arrow" aria-hidden="true">↓</div>
+          <div class="struct__node"><strong>Sub-layer management</strong><span>View the layer list · add · remove · edit · delete</span></div>
+          <p class="struct__note">Concept diagram reconstructed from the features discussed in the project.</p>
+        </div>
+      </figure>
+
+      <div class="cs-block reveal">
+        <p class="cs-label">2-2. Requirements → Functions</p>
+        <h3 class="cs-h">Every function written as a user action.</h3>
+        <p class="cs-p">For each feature I specified what the user does, what the system does in response, and which inputs and buttons are involved — so the same definition could drive both the functional spec and the screens.</p>
+      </div>
+      <div class="cards3 reveal">
+        <div class="card"><b>MAP GROUP</b><h4>Register by work area</h4><p>Pick the work area — block &amp; logistics, facilities, safety, traffic — enter a group name and save.</p></div>
+        <div class="card"><b>LAYER LIST</b><h4>See what’s registered</h4><p>View the registered map layers, then edit or delete existing ones.</p></div>
+        <div class="card"><b>COMPOSITION</b><h4>Add or remove layers</h4><p>Add layers or layer groups to the selected map group, remove them, and reorder them by drag and drop.</p></div>
+      </div>
+    </div>
+
+    <!-- 3. SCREEN DESIGN -->
+    <div class="cs-bar" id="screens"><h2>3. Screen Design</h2></div>
+    <div class="cs-body">
+      <div class="cs-block reveal">
+        <p class="cs-label">3-1. Safety Map — Triple Inspection</p>
+        <h3 class="cs-h">High-risk work, colored by inspection progress.</h3>
+        <p class="cs-p">Users choose a status type — work orders, work permits or high-risk work — filter by organization and date, and the list refreshes automatically every five minutes. High-risk work points are colored by how many of the three independent inspections are done: red for none, yellow for one or two, green for all three. Selecting a point opens its details and inspection history.</p>
+      </div>
+      <figure class="fig reveal">
+        <img src="../assets/img/hd-samho/screens/sa-01-safety-work.jpg" width="1020" alt="Safety Map triple inspection screen with filters, colored work points and an inspection history modal">
+        <figcaption>P-SA-01 · Safety work status and inspection history</figcaption>
+      </figure>
+
+      <div class="cs-block reveal">
+        <p class="cs-label">3-2. Safety Staff &amp; Update Log</p>
+        <h3 class="cs-h">Who is where, and what just changed.</h3>
+        <p class="cs-p">Safety staff can be shown or hidden on the map, with a popup for each person’s team, radio number and area. An update log lists the latest inspection results by time, newest first.</p>
+      </div>
+      <figure class="fig reveal">
+        <img src="../assets/img/hd-samho/screens/sa-11-safety-staff.jpg" width="1020" alt="Safety Map screen with safety staff on the map and a live update log">
+        <figcaption>P-SA-11 · Safety staff layer and update log (names masked)</figcaption>
+      </figure>
+
+      <div class="cs-block reveal">
+        <p class="cs-label">3-3. Safety Information</p>
+        <h3 class="cs-h">Points, clusters or a heatmap.</h3>
+        <p class="cs-p">Safety inspections and incidents can be looked up by period (up to five years), department and violation type. Results appear as points on the map and in a list, and can be switched to clusters or a heatmap where denser areas turn red.</p>
+      </div>
+      <figure class="fig reveal">
+        <div class="row">
+          <img src="../assets/img/hd-samho/screens/sa-12-inspection.jpg" width="500" alt="Safety inspection lookup with a detail popup">
+          <img src="../assets/img/hd-samho/screens/sa-14-heatmap.jpg" width="500" alt="Safety inspection results shown as a heatmap">
+        </div>
+        <figcaption>P-SA-12 · Inspection lookup (left) and P-SA-14 · heatmap view (right)</figcaption>
+      </figure>
+
+      <div class="cs-block reveal">
+        <p class="cs-label">3-4. Contract Work</p>
+        <h3 class="cs-h">Any work that overlaps the period shows up.</h3>
+        <p class="cs-p">Contract work is searched by period — a job appears if its construction period overlaps the search range. Double-clicking a row moves the map to the site, and each site’s popup shows the job, department, grade, workers, tasks and period.</p>
+      </div>
+      <figure class="fig reveal">
+        <img src="../assets/img/hd-samho/screens/sa-21-contract-work.jpg" width="1020" alt="Contract work lookup with a list and a site information popup">
+        <figcaption>P-SA-21 · Contract work lookup</figcaption>
+      </figure>
+
+      <div class="cs-block reveal">
+        <p class="cs-label">3-5. Map Layer Management (Admin)</p>
+        <h3 class="cs-h">Deciding which layers each map shows.</h3>
+        <p class="cs-p">The map layer list groups layers by work area, with add, edit and delete for each map. On the edit screen, admins pick the target service (one of block &amp; logistics, facilities, safety or traffic), name the map layer (up to six Korean characters), add layers or layer groups from the list on the right, and reorder them by drag and drop. Saving keeps the admin on the page and confirms the save.</p>
+      </div>
+      <figure class="fig reveal">
+        <img src="../assets/img/hd-samho/screens/ad-87-map-layer-list.jpg" width="1020" alt="Admin map layer list grouped by work area">
+        <img src="../assets/img/hd-samho/screens/ad-88-map-layer-edit.jpg" width="1020" alt="Admin screen for adding and editing a map layer">
+        <figcaption>P-AD-87 · Map layer list and P-AD-88 · add / edit map layer</figcaption>
+      </figure>
+    </div>
+
+    <!-- 4. SPECS · MANUAL -->
+    <div class="cs-bar" id="deliver"><h2>4. Specs · Manual</h2></div>
+    <div class="cs-body">
+      <div class="cs-block reveal">
+        <p class="cs-label">4-1. Change History</p>
+        <h3 class="cs-h">Specs kept in step with every change.</h3>
+        <p class="cs-p">When features or screens changed, I updated the functional spec and the screen design spec together and recorded each revision in the version history.</p>
+      </div>
+      <div class="table-wrap reveal">
+        <table class="cs-table">
+          <thead><tr><th>Date</th><th>My revisions in the screen design spec</th></tr></thead>
+          <tbody>
+            <tr><td>2025.03.21</td><td>Safety Map screen design — first draft</td></tr>
+            <tr><td>2025.04.21</td><td>Block information · process view — first draft</td></tr>
+            <tr><td>2025.04.25</td><td>Safety Map screen design — revised</td></tr>
+            <tr><td>2025.09.22</td><td>My location &amp; nearby search, block location, material location</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cs-block reveal">
+        <p class="cs-label">4-2. Admin Manual</p>
+        <h3 class="cs-h">Documenting how the admin pages work.</h3>
+        <p class="cs-p">Separately from the features I designed, I wrote the admin manual: how to reach and sign in to the admin pages, the overall layout, what each menu does — layers, symbols, users and logs — and how to view, register, edit and delete. The layer management screen was explained component by component.</p>
+      </div>
+      <figure class="fig reveal">
+        <ul class="chips chips--center"><li>Access &amp; sign-in</li><li>Screen layout</li><li>Layer management</li><li>Symbol management</li><li>User management</li><li>Log management</li><li>View · register · edit · delete</li></ul>
+        <figcaption>Topics covered in the admin manual (documented, not designed by me)</figcaption>
+      </figure>
+    </div>
+
+    <!-- 5. TAKEAWAYS -->
+    <div class="cs-bar" id="takeaways"><h2>5. Takeaways</h2></div>
+    <div class="cs-body">
+      <div class="takeaway reveal">
+        <h3>What I can show</h3>
+        <p class="cs-p">Detailing a GIS service into functions, understanding how spatial data is managed in groups and layers, designing screens function by function, and keeping specs and change history in order.</p>
+      </div>
+      <div class="takeaway reveal">
+        <h3>What I learned</h3>
+        <p class="cs-p">Writing each function as a user action made the functional spec and the screens line up, so every later change could be traced through the version history.</p>
+      </div>
+      <div class="takeaway reveal">
+        <h3>A note on the images</h3>
+        <p class="cs-p">Screens shown are from the planning-stage screen design spec, not the final built service. Personal names and internal addresses have been masked.</p>
+      </div>
+    </div>
+
+    <div class="cs-bar" id="other"><h2>Other Projects</h2></div>
+    <div class="other">
+      <article class="other-card reveal">
+        <div>
+          <h3>Forest Watershed Map</h3>
+          <p>A Web GIS spatial-analysis flow that non-experts can follow — complex analysis turned into step-by-step choices.</p>
+          <div class="btns"><a class="btn-sm" href="forest-watershed-map.html">View Case Study</a></div>
+        </div>
+        <div class="other-card__media"><img src="../assets/img/common/forest-card.png" alt="Forest spatial analysis panel"></div>
+      </article>
+      <article class="other-card other-card--flip reveal">
+        <div>
+          <h3>3D Solar Radiation Analysis</h3>
+          <p>Web-based 3D software that maps solar radiation onto building walls — from data production to histograms.</p>
+          <div class="btns"><a class="btn-sm" href="kier-solar-radiation.html">View Case Study</a></div>
+        </div>
+        <div class="other-card__media"><img src="../assets/img/kier/app-face-select.jpg" alt="Selecting a building wall with solar radiation data"></div>
+      </article>
+    </div>
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__top">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Let’s start<br>creating together</h2>
+          <a class="btn-grey" href="../contact.html">Let’s talk <svg viewBox="0 0 16 16"><path d="M13.67 1.58H4a.75.75 0 0 0 0 1.5h7.86L1.8 13.14a.75.75 0 1 0 1.06 1.06L12.92 4.14V12a.75.75 0 0 0 1.5 0V2.33a.75.75 0 0 0-.75-.75z"/></svg></a>
+        </div>
+        <div class="footer-links">
+          <div class="col"><a href="../index.html">Home</a><a href="index.html">Case Studies</a>
+        <a href="../work.html">Work</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></div>
+          <div class="col">
+            <a href="#" data-todo="linkedin">Linkedin <svg viewBox="0 0 16 16"><path d="M13.67 1.58H4a.75.75 0 0 0 0 1.5h7.86L1.8 13.14a.75.75 0 1 0 1.06 1.06L12.92 4.14V12a.75.75 0 0 0 1.5 0V2.33a.75.75 0 0 0-.75-.75z" fill="#fff"/></svg></a>
+            <a href="#" data-todo="dribbble">Dribbble <svg viewBox="0 0 16 16"><path d="M13.67 1.58H4a.75.75 0 0 0 0 1.5h7.86L1.8 13.14a.75.75 0 1 0 1.06 1.06L12.92 4.14V12a.75.75 0 0 0 1.5 0V2.33a.75.75 0 0 0-.75-.75z" fill="#fff"/></svg></a>
+            <a href="mailto:hn35987@gmail.com">Gmail <svg viewBox="0 0 16 16"><path d="M13.67 1.58H4a.75.75 0 0 0 0 1.5h7.86L1.8 13.14a.75.75 0 1 0 1.06 1.06L12.92 4.14V12a.75.75 0 0 0 1.5 0V2.33a.75.75 0 0 0-.75-.75z" fill="#fff"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom"><span><span data-year>2026</span> Designed by SKY YOO</span></div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/i18n-ko.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>

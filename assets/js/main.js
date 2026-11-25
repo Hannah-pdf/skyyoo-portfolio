@@ -238,7 +238,7 @@
     const count = box.querySelector('.zoom__count');
     let idx = 0; let lastFocus = null;
 
-    const hdSrc = (src) => src.replace(/\/assets\/img\/(korail|heartpath|forest)\//, '/assets/img/hd/$1/');
+    const hdSrc = (src) => src.replace(/\/assets\/img\/(korail|heartpath|forest|hd-samho|kier|cesium)\/(?:screens\/)?/, '/assets/img/hd/$1/');
     const captionOf = (img) => {
       const fig = img.closest('figure');
       const fc = fig && fig.querySelector('figcaption');

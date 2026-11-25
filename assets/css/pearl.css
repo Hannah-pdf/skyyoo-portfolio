@@ -244,3 +244,31 @@ video.cs-video { display: block; max-width: 100%; height: auto; object-fit: cove
 .zoom.is-video .zoom__video { display: block; }
 .fig video.cs-video { border-radius: 4px; }
 .feature video.cs-video { width: 352px; max-width: 100%; justify-self: center; }
+
+/* ---------- Concept diagram (structure) + simple data table ---------- */
+.struct { width: 1000px; max-width: calc(100% - 48px); background: #fff; border: 1px solid #e6e6e8; border-radius: 14px; padding: 32px 24px 24px; display: flex; flex-direction: column; align-items: center; gap: 12px; font-family: var(--f-case); }
+.struct__title { font-weight: 600; font-size: 18px; color: var(--ink); margin: 0 0 4px; }
+.struct__node { width: 100%; border: 1px solid #e6e6e8; border-radius: 10px; padding: 18px 16px; text-align: center; }
+.struct__node strong { display: block; font-weight: 600; font-size: 18px; color: var(--ink); }
+.struct__node span { display: block; font-size: 14px; color: var(--body); margin-top: 4px; }
+.struct__node--root { border: 0; padding: 4px; }
+.struct__arrow { color: #9aa0a6; font-size: 18px; line-height: 1; }
+.struct__grid { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.struct__grid div { border: 1px solid #e6e6e8; border-radius: 10px; padding: 16px 8px; text-align: center; font-size: 15px; color: var(--ink); }
+.struct__grid div.is-mine { border-color: #21a35a; background: #eef8f1; color: #16723f; font-weight: 600; }
+.struct__note { align-self: flex-start; font-size: 13px; color: var(--label); margin: 4px 0 0; }
+.flow { width: 1000px; max-width: calc(100% - 48px); display: flex; align-items: stretch; gap: 8px; flex-wrap: wrap; justify-content: center; font-family: var(--f-case); }
+.flow div { flex: 1 1 150px; background: #fff; border: 1px solid #e6e6e8; border-radius: 10px; padding: 16px 14px; }
+.flow b { display: block; font-family: var(--f-ui); font-size: 12px; color: #21a35a; margin-bottom: 6px; }
+.flow strong { display: block; font-weight: 600; font-size: 16px; color: var(--ink); }
+.flow span { display: block; font-size: 13px; color: var(--body); margin-top: 4px; line-height: 1.45; }
+.cs-table { width: 1000px; max-width: calc(100% - 48px); border-collapse: collapse; background: #fff; border: 1px solid #e6e6e8; border-radius: 10px; overflow: hidden; font-family: var(--f-case); font-size: 15px; }
+.cs-table th { text-align: left; font-family: var(--f-ui); font-weight: 500; font-size: 12px; color: #21a35a; background: #f7f7f8; padding: 14px 20px; letter-spacing: .03em; }
+.cs-table td { padding: 14px 20px; border-top: 1px solid #e6e6e8; color: var(--body); vertical-align: top; }
+.cs-table td:first-child { color: var(--ink); white-space: nowrap; }
+.table-wrap { width: 100%; display: flex; justify-content: center; overflow-x: auto; }
+@media (max-width: 760px) {
+  .struct__grid { grid-template-columns: repeat(2, 1fr); }
+  .cs-table { font-size: 14px; } .cs-table th, .cs-table td { padding: 12px 12px; }
+  .cs-table td:first-child { white-space: normal; }
+}

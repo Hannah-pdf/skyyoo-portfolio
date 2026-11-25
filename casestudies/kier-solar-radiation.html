@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3D Solar Radiation Analysis — SKY YOO</title>
+  <meta name="description" content="3D Solar Radiation Analysis — web software that maps solar radiation onto building walls, from data production to histograms.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/pearl.css">
+  <link rel="icon" href="../assets/img/common/logo.svg" type="image/svg+xml">
+</head>
+<body class="case">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="logo" href="../index.html" aria-label="SKY YOO home"><img src="../assets/img/common/logo.svg" alt="" width="30" height="30"><span>SKY YOO</span></a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html">Case Studies</a>
+        <a href="../work.html" aria-current="page">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+      <a class="pill pill--dark header-cta" href="#" data-todo="resume-link">Resume</a>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+
+  <nav class="cs-side" aria-label="Sections">
+    <a href="#overview">Overview</a><a href="#define">Requirements · Define</a><a href="#data">Data · Structure</a>
+    <a href="#visualize">Visualize · Refine</a><a href="#takeaways">Takeaways</a><a href="#other">Other Projects</a>
+  </nav>
+
+  <main class="cs">
+    <section class="cs-hero">
+      <div class="cs-hero__top">
+        <img class="reveal" src="../assets/img/kier/app-face-select.jpg" alt="Selecting one wall of a building colored by solar radiation on a 3D map">
+        <div class="reveal">
+          <h1 class="cs-title">3D Solar Radiation Analysis</h1>
+          <p class="cs-tagline">From raw 3D data to a wall-by-wall histogram</p>
+          <p class="cs-summary">Web-based 3D software for the Korea Institute of Energy Research that maps solar radiation onto building surfaces for solar-panel planning. As PM and service planner, I turned the institute’s requirements into functions and screens, organized and produced the 3D spatial data myself, and kept researchers and two developers working toward the same result.</p>
+          <a class="btn-outline" href="#visualize">View Screens</a>
+        </div>
+      </div>
+      <div class="cs-meta reveal">
+        <div><h4>Deliverables</h4><ul><li>Requirements Definition</li><li>Functional Specification</li><li>Screen Design Spec</li><li>Monthly &amp; Final Reports</li></ul></div>
+        <div><h4>My Role</h4><ul><li>Project Manager</li><li>Service Planning</li><li>UI &amp; Screen Design</li><li>3D Data Production</li></ul></div>
+        <div><h4>Tool</h4><ul><li>QGIS · FME</li><li>Rhino · Python scripts</li><li>CesiumJS (viewer)</li><li>Word · Excel · PowerPoint</li></ul></div>
+        <div><h4>Project Context</h4><ul><li>Client: Korea Institute<br>of Energy Research</li><li>2025.06 – 2025.10</li><li>Worked with 2 developers</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 1. OVERVIEW -->
+    <div class="cs-bar" id="overview"><h2>1. Overview</h2></div>
+    <div class="cs-body">
+      <div class="cs-block reveal">
+        <p class="cs-label">1-1. Background</p>
+        <h3 class="cs-h">Solar panels need to know which walls get the sun.</h3>
+        <p class="cs-p">To plan solar installations, the institute needed solar radiation analyzed in 3D — not just on roofs, but on every wall. The 2025 scope was to visualize analysis data computed at 25 cm resolution on a 3D building, let users pick a wall and see its radiation as a histogram, and pull statistics for any area they choose.</p>
+      </div>
+      <figure class="fig reveal">
+        <ul class="chips chips--green chips--center"><li>Analysis data on 3D buildings</li><li>Wall selection</li><li>Cell selection → histogram</li><li>CSV export of the selected area</li></ul>
+        <figcaption>What the 2025 release delivered</figcaption>
+      </figure>
+      <div class="note reveal">
+        <p class="tag">DESIGNER’S NOTE</p>
+        <h4>More than schedules: PM, planning and data in one role</h4>
+        <p>Besides managing the schedule and progress, I analyzed the client’s requirements and connected them to functions and screens, planned how the 3D spatial data would be built, documented the data production process and produced the data myself — then coordinated between researchers and developers.</p>
+      </div>
+      <figure class="fig reveal">
+        <div class="steps">
+          <div class="step"><b>01</b><strong>Requirements</strong><span>Kickoff questions &amp; definition</span></div>
+          <div class="step"><b>02</b><strong>Functions</strong><span>Function list &amp; screens</span></div>
+          <div class="step"><b>03</b><strong>3D Data</strong><span>Production process &amp; data</span></div>
+          <div class="step"><b>04</b><strong>Structure</strong><span>Building → wall → cell</span></div>
+          <div class="step"><b>05</b><strong>Visualize</strong><span>Selection &amp; histogram</span></div>
+          <div class="step"><b>06</b><strong>Report</strong><span>Monthly · final report, demo</span></div>
+        </div>
+        <figcaption>Issues were logged in a shared progress deck and resolved one by one with the client.</figcaption>
+      </figure>
+    </div>
+
+    <!-- 2. REQUIREMENTS · DEFINE -->
+    <div class="cs-bar" id="define"><h2>2. Requirements · Define</h2></div>
+    <div class="cs-body">
+      <div class="cs-block reveal">
+        <p class="cs-label">2-1. Kickoff Questions</p>
+        <h3 class="cs-h">Questions first, so the scope was clear.</h3>
+        <p class="cs-p">The sample analysis data raised more questions than answers. At the kickoff meeting I brought a list of open points about the data, the analysis results and how they should be shown, so we could settle the scope before designing screens.</p>
+      </div>
+      <div class="cards3 reveal">
+        <div class="card"><b>SCOPE</b><h4>What gets analyzed?</h4><p>Buildings only, or the flat ground around them too? Which area is in scope this year?</p></div>
+        <div class="card"><b>RESULTS</b><h4>What do users see?</h4><p>Which values and statistics — average, sum — appear when a wall or cell is selected? What is the color legend based on?</p></div>
+        <div class="card"><b>DATA</b><h4>How does it reach the web?</h4><p>Is converting Rhino (3dm) results into a web format part of the work? Are LOD1 buildings shown alongside the analysis?</p></div>
+      </div>
+
+      <div class="cs-block reveal">
+        <p class="cs-label">2-2. Requirements → Functions</p>
+        <h3 class="cs-h">Three requirements, broken into buildable functions.</h3>
+        <p class="cs-p">I wrote the requirements definition and the function list, splitting each requirement into functions developers could implement and linking every function to a screen.</p>
+      </div>
+      <div class="table-wrap reveal">
+        <table class="cs-table">
+          <thead><tr><th>Requirement</th><th>Functions</th></tr></thead>
+          <tbody>
+            <tr><td>GIS data collection &amp; processing</td><td>Analyze collected data · build analysis data in a web format · build LOD1 building and terrain data for the pilot area</td></tr>
+            <tr><td>Rendering environment</td><td>Place search · nationwide LOD1 buildings &amp; DEM · select a building · select a wall · export a wall as a 2D polygon · select cells by drag or polygon</td></tr>
+            <tr><td>Analysis visualization</td><td>Histogram of the selected cells (direct / diffuse radiation) · select all cells · color by legend</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cs-block reveal">
+        <p class="cs-label">2-3. Screen Design</p>
+        <h3 class="cs-h">Main map, analysis panel, result chart.</h3>
+        <p class="cs-p">The first screen designs set the flow: find a place and a building on the map, choose a wall to analyze, then view the result as a histogram and export it. Open questions — which values to chart, which export format — were marked on each screen and resolved with the client.</p>
+      </div>
+      <figure class="fig reveal">
+        <img src="../assets/img/kier/spec-main.jpg" width="1020" alt="Screen design for the main map with building information">
+        <div class="row">
+          <img src="../assets/img/kier/spec-analysis.jpg" width="500" alt="Screen design for the solar radiation analysis panel">
+          <img src="../assets/img/kier/spec-result.jpg" width="500" alt="Screen design for the result histogram">
+        </div>
+        <figcaption>Screen design spec · main map, analysis panel and result chart</figcaption>
+      </figure>
+    </div>
+
+    <!-- 3. DATA · STRUCTURE -->
+    <div class="cs-bar" id="data"><h2>3. Data · Structure</h2></div>
+    <div class="cs-body">
+      <div class="cs-block reveal">
+        <p class="cs-label">3-1. 3D Data Production</p>
+        <h3 class="cs-h">I built the input data the analysis needed.</h3>
+        <p class="cs-p">The analysis modeler needed 3D buildings on real terrain. I combined the national building-height database with a DEM, computed absolute building heights, and converted the result into formats the modeler could open — documenting each step so it could be repeated next year.</p>
+      </div>
+      <figure class="fig reveal">
+        <div class="flow">
+          <div><b>QGIS</b><strong>Absolute heights</strong><span>Sample the DEM at each building and add it to the building height</span></div>
+          <div><b>FME</b><strong>3D buildings</strong><span>Extrude footprints and export DWG / DXF for CAD and Rhino</span></div>
+          <div><b>RHINO</b><strong>Terrain + buildings</strong><span>Build terrain from contours and merge it with the buildings</span></div>
+          <div><b>MODELER</b><strong>Analysis data</strong><span>Solar radiation results (3dm) with a color legend</span></div>
+          <div><b>CONVERTER</b><strong>Web data</strong><span>3D Tiles for the map and GeoJSON for cell values</span></div>
+        </div>
+        <figcaption>Data production flow, from source data to the web viewer</figcaption>
+      </figure>
+      <figure class="fig reveal">
+        <img src="../assets/img/kier/data-pipeline.jpg" width="1020" alt="Diagram of the data preparation and visualization pipeline">
+        <figcaption>Data preparation (top) and web visualization (bottom) as documented in the progress deck</figcaption>
+      </figure>
+      <div class="note reveal">
+        <p class="tag">ISSUES I SOLVED ALONG THE WAY</p>
+        <h4>Two coordinate systems, and a city that landed in the sea</h4>
+        <p>Buildings (EPSG:5179) and terrain (EPSG:5186) used different coordinate systems, so I unified them before merging. The merged model then appeared in the sea off the Philippines because its origin wasn’t set — I fixed the placement with a Rhino Python script and set the coordinate system in FME.</p>
+      </div>
+
+      <div class="cs-block reveal">
+        <p class="cs-label">3-2. Service Data Structure</p>
+        <h3 class="cs-h">Building → wall → cell.</h3>
+        <p class="cs-p">The analysis results came as one mesh per building, which worked for viewing but not for picking cells. I proposed a service structure that splits each building into walls and each wall into cells with their own ID and values, and raised the cases that needed a rule: cells with unclear grid lines, and rounded corners that had to be grouped into walls by surface direction.</p>
+      </div>
+      <figure class="fig reveal">
+        <div class="row">
+          <img src="../assets/img/kier/data-structure.jpg" width="500" alt="Data units: building, wall and cell">
+          <img src="../assets/img/kier/ambiguous-cells.jpg" width="500" alt="Handling cells whose grid lines are unclear">
+        </div>
+        <figcaption>Proposed data units (left) and the unclear-cell problem (right)</figcaption>
+      </figure>
+
+      <div class="cs-block reveal">
+        <p class="cs-label">3-3. Image vs. 2D Vector</p>
+        <h3 class="cs-h">Accuracy over speed for cell data.</h3>
+        <p class="cs-p">Exporting each wall as an image was quick, but half cells and blurry edges would merge or drop data, and fixed image sizes wouldn’t scale to large walls. We compared both and adopted 2D vectors, so every cell keeps its exact boundary. The team’s in-house converter then split walls and cells into 3D Tiles and per-wall GeoJSON.</p>
+      </div>
+      <figure class="fig reveal">
+        <img src="../assets/img/kier/image-vs-vector.jpg" width="1020" alt="Comparison table of image and 2D vector extraction">
+        <img src="../assets/img/kier/converter-flow.jpg" width="1020" alt="Data conversion flow with the converter and tiler">
+        <figcaption>Extraction method comparison and the conversion flow</figcaption>
+      </figure>
+    </div>
+
+    <!-- 4. VISUALIZE · REFINE -->
+    <div class="cs-bar" id="visualize"><h2>4. Visualize · Refine</h2></div>
+    <div class="cs-body">
+      <div class="cs-block reveal">
+        <p class="cs-label">4-1. Wall &amp; Cell Selection</p>
+        <h3 class="cs-h">Pick a wall, then the cells you care about.</h3>
+        <p class="cs-p">Selecting a wall on the 3D map opens it flat in its own view. From there users select all cells, drag a box, or draw a polygon around the area they want to analyze.</p>
+      </div>
+      <figure class="fig reveal">
+        <img src="../assets/img/kier/app-face-select.jpg" width="1020" alt="Selecting a wall on the 3D map">
+        <div class="row">
+          <img src="../assets/img/kier/app-cell-select.jpg" width="330" alt="Wall opened as a flat cell grid">
+          <img src="../assets/img/kier/app-box-select.jpg" width="330" alt="Selecting cells with a box">
+          <img src="../assets/img/kier/app-polygon-select.jpg" width="330" alt="Selecting cells with a polygon">
+        </div>
+        <figcaption>Wall selection → flat cell view → box or polygon selection</figcaption>
+      </figure>
+
+      <div class="cs-block reveal">
+        <p class="cs-label">4-2. Histogram</p>
+        <h3 class="cs-h">Many chart drafts, one that could be read.</h3>
+        <p class="cs-p">Direct and diffuse radiation had to be compared across hundreds of cells. Treating values as categories lost their order; numeric axes squeezed crowded values together. We tried bidirectional, split and stacked bars with the client, then settled on a bar chart users can drag to zoom into — down to a single bar, with Shift to pan — and checked how many decimals the values needed. The selected values export as CSV.</p>
+      </div>
+      <figure class="fig reveal">
+        <div class="row">
+          <img src="../assets/img/kier/app-histogram.jpg" width="500" alt="Histogram of direct and diffuse radiation for selected cells">
+          <img src="../assets/img/kier/app-export.jpg" width="500" alt="Exporting the selected values as CSV">
+        </div>
+        <figcaption>Histogram with drag-to-zoom (left) and CSV export (right)</figcaption>
+      </figure>
+
+      <div class="cs-block reveal">
+        <p class="cs-label">4-3. Refinements</p>
+        <h3 class="cs-h">Matching the researchers’ reference.</h3>
+        <p class="cs-p">After reviews I matched the analysis colors to the original data, added the legend provided by the data producer, renamed the chart axes, switched the unit to kWh/m² and restyled the histogram. When terrain hid parts of the buildings, 3D Tiles were drawn on top of the terrain.</p>
+      </div>
+      <figure class="fig reveal">
+        <img src="../assets/img/kier/refinements.jpg" width="1020" alt="Refinements to colors, legend, axes and units">
+        <div class="row">
+          <img src="../assets/img/kier/app-25cm.jpg" width="500" alt="25 cm resolution analysis data on buildings">
+          <img src="../assets/img/kier/app-search.jpg" width="500" alt="Place search over the 3D city">
+        </div>
+        <figcaption>Review changes (top), 25 cm analysis data and place search (bottom)</figcaption>
+      </figure>
+    </div>
+
+    <!-- 5. TAKEAWAYS -->
+    <div class="cs-bar" id="takeaways"><h2>5. Takeaways</h2></div>
+    <div class="cs-body">
+      <div class="takeaway reveal">
+        <h3>What went well</h3>
+        <p class="cs-p">Because I handled requirements, screens and data production together, issues could be traced from the data all the way to the screen — and the progress deck kept every decision visible to the client and developers.</p>
+      </div>
+      <div class="takeaway reveal">
+        <h3>What the demo taught us</h3>
+        <p class="cs-p">At the October demo, the institute concluded that selecting whole walls is enough — single-cell selection went further than needed. Next steps raised were user-defined ranges, showing only areas above a radiation threshold across an industrial complex, and a separate approach for complex-scale data, since one analysis covers one building shape.</p>
+      </div>
+      <div class="takeaway reveal">
+        <h3>Next Steps</h3>
+        <p class="cs-p">Scaling to industrial complexes will need a formal application for the restricted building-height data and a converter that takes more than one input at a time.</p>
+      </div>
+    </div>
+
+    <div class="cs-bar" id="other"><h2>Other Projects</h2></div>
+    <div class="other">
+      <article class="other-card reveal">
+        <div>
+          <h3>GIS Safety Map</h3>
+          <p>Planning the Safety Map and map-layer admin for a shipyard GIS — requirements turned into functions and screens.</p>
+          <div class="btns"><a class="btn-sm" href="hd-samho-safety-map.html">View Case Study</a></div>
+        </div>
+        <div class="other-card__media"><img src="../assets/img/hd-samho/screens/sa-14-heatmap.jpg" alt="Safety Map heatmap screen"></div>
+      </article>
+      <article class="other-card other-card--flip reveal">
+        <div>
+          <h3>Forest Watershed Map</h3>
+          <p>A Web GIS spatial-analysis flow that non-experts can follow — complex analysis turned into step-by-step choices.</p>
+          <div class="btns"><a class="btn-sm" href="forest-watershed-map.html">View Case Study</a></div>
+        </div>
+        <div class="other-card__media"><img src="../assets/img/common/forest-card.png" alt="Forest spatial analysis panel"></div>
+      </article>
+    </div>
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__top">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Let’s start<br>creating together</h2>
+          <a class="btn-grey" href="../contact.html">Let’s talk <svg viewBox="0 0 16 16"><path d="M13.67 1.58H4a.75.75 0 0 0 0 1.5h7.86L1.8 13.14a.75.75 0 1 0 1.06 1.06L12.92 4.14V12a.75.75 0 0 0 1.5 0V2.33a.75.75 0 0 0-.75-.75z"/></svg></a>
+        </div>
+        <div class="footer-links">
+          <div class="col"><a href="../index.html">Home</a><a href="index.html">Case Studies</a>
+        <a href="../work.html">Work</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></div>
+          <div class="col">
+            <a href="#" data-todo="linkedin">Linkedin <svg viewBox="0 0 16 16"><path d="M13.67 1.58H4a.75.75 0 0 0 0 1.5h7.86L1.8 13.14a.75.75 0 1 0 1.06 1.06L12.92 4.14V12a.75.75 0 0 0 1.5 0V2.33a.75.75 0 0 0-.75-.75z" fill="#fff"/></svg></a>
+            <a href="#" data-todo="dribbble">Dribbble <svg viewBox="0 0 16 16"><path d="M13.67 1.58H4a.75.75 0 0 0 0 1.5h7.86L1.8 13.14a.75.75 0 1 0 1.06 1.06L12.92 4.14V12a.75.75 0 0 0 1.5 0V2.33a.75.75 0 0 0-.75-.75z" fill="#fff"/></svg></a>
+            <a href="mailto:hn35987@gmail.com">Gmail <svg viewBox="0 0 16 16"><path d="M13.67 1.58H4a.75.75 0 0 0 0 1.5h7.86L1.8 13.14a.75.75 0 1 0 1.06 1.06L12.92 4.14V12a.75.75 0 0 0 1.5 0V2.33a.75.75 0 0 0-.75-.75z" fill="#fff"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom"><span><span data-year>2026</span> Designed by SKY YOO</span></div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/i18n-ko.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>

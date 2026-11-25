@@ -276,3 +276,16 @@ video.cs-video { display: block; max-width: 100%; height: auto; object-fit: cove
 
 /* Footer stacks on phones (overrides the two-column grid above) */
 @media (max-width: 760px) { .site-footer__top { grid-template-columns: 1fr; } }
+
+/* ---------- Layout fixes: Other Projects cards, shrinking image rows ---------- */
+.other-card { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(28px, 4vw, 56px); padding: 88px clamp(24px, 8vw, 150px); }
+.other-card--flip { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+.other-card h3 { font-size: clamp(24px, 2.4vw, 30px); line-height: 1.2; }
+.other-card__media { display: flex; justify-content: center; }
+.other-card__media img { width: 100%; max-width: 640px; height: auto; max-height: 440px; object-fit: contain; }
+.btn-sm, .btn-outline { display: inline-block; white-space: nowrap; }
+.row > img, .row > .col { min-width: 0; flex: 0 1 auto; }
+@media (max-width: 900px) {
+  .other-card, .other-card--flip { grid-template-columns: 1fr; padding: 56px var(--side); gap: 24px; }
+  .other-card--flip .other-card__media { order: 0; }
+}

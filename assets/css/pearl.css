@@ -289,3 +289,10 @@ video.cs-video { display: block; max-width: 100%; height: auto; object-fit: cove
   .other-card, .other-card--flip { grid-template-columns: 1fr; padding: 56px var(--side); gap: 24px; }
   .other-card--flip .other-card__media { order: 0; }
 }
+
+/* ---------- Button row + placeholder boxes (pages still being filled in) ---------- */
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.ph-box { width: 1000px; max-width: calc(100% - 48px); aspect-ratio: 16 / 9; border: 1px dashed #c3c7cb; border-radius: 10px; background: #fafafa; display: grid; place-items: center; color: var(--label); font-family: var(--f-ui); font-size: 13px; text-align: center; padding: 16px; }
+.cs-hero__top .ph-box { width: 100%; max-width: none; }
+.is-pending { opacity: .45; cursor: default; }
+.btn-outline.is-pending:hover { background: none; color: inherit; }

@@ -317,3 +317,12 @@
     if (zoomables.length < 2) box.classList.add('is-single');
   }
 })();
+
+/* Links that are still placeholders (href="#" + data-todo): don't open an empty tab */
+document.querySelectorAll('a.btn-outline[data-todo][href="#"]').forEach((a) => {
+  a.classList.add('is-pending');
+  a.removeAttribute('target');
+  a.setAttribute('aria-disabled', 'true');
+  a.title = 'Link coming soon';
+  a.addEventListener('click', (e) => e.preventDefault());
+});
